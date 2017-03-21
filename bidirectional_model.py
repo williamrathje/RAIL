@@ -114,7 +114,7 @@ for iteration in range(1, 100):
 
     print()
     test_X, test_X_rev, test_y = prepare(test)
-    e = model.evaluate([test_X, text_X_rev], test_y, verbose=1)
+    e = model.evaluate([test_X, test_X_rev], test_y, verbose=1)
     print(str(model.metrics_names))
     for x in e:
         print("Metric: " + str(x))
