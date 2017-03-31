@@ -54,7 +54,7 @@ import time
 import numpy as np
 import tensorflow as tf
 
-import reader
+import word_lstm_reader as reader
 
 flags = tf.flags
 logging = tf.logging
