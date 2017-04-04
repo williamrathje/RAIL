@@ -60,7 +60,7 @@ flags = tf.flags
 logging = tf.logging
 
 flags.DEFINE_string(
-    "model", "medium",
+    "model", "small",
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", "./",
                     "Where the training/test data is stored.")
@@ -139,8 +139,8 @@ class PTBModel(object):
     # The alternative version of the code below is:
     #
     # inputs = tf.unstack(inputs, num=num_steps, axis=1)
-    # outputs, state = tf.nn.rnn(cell, inputs,
-    #                            initial_state=self._initial_state)
+    # outputs, state = tf.contrib.rnn.static_rnn(
+    #     cell, inputs, initial_state=self._initial_state)
     outputs = []
     state = self._initial_state
     with tf.variable_scope("RNN"):
@@ -218,8 +218,7 @@ class SmallConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 10000
-
+  vocab_size = 124262
 
 class MediumConfig(object):
   """Medium config."""
@@ -234,7 +233,7 @@ class MediumConfig(object):
   keep_prob = 0.5
   lr_decay = 0.8
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 124262
 
 
 class LargeConfig(object):
@@ -250,7 +249,7 @@ class LargeConfig(object):
   keep_prob = 0.35
   lr_decay = 1 / 1.15
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 124262
 
 
 class TestConfig(object):
@@ -266,7 +265,7 @@ class TestConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 124262
 
 
 def run_epoch(session, model, eval_op=None, verbose=False):
