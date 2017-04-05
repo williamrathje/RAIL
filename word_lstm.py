@@ -54,13 +54,13 @@ import time
 import numpy as np
 import tensorflow as tf
 
-import word_lstm_reader as reader
+import reader
 
 flags = tf.flags
 logging = tf.logging
 
 flags.DEFINE_string(
-    "model", "small",
+    "model", "medium",
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", "./",
                     "Where the training/test data is stored.")
@@ -139,8 +139,8 @@ class PTBModel(object):
     # The alternative version of the code below is:
     #
     # inputs = tf.unstack(inputs, num=num_steps, axis=1)
-    # outputs, state = tf.contrib.rnn.static_rnn(
-    #     cell, inputs, initial_state=self._initial_state)
+    # outputs, state = tf.nn.rnn(cell, inputs,
+    #                            initial_state=self._initial_state)
     outputs = []
     state = self._initial_state
     with tf.variable_scope("RNN"):
@@ -218,12 +218,13 @@ class SmallConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 124262
+  vocab_size = 10000
+
 
 class MediumConfig(object):
   """Medium config."""
   init_scale = 0.05
-  learning_rate = 1.0
+  learning_rate = 0.1
   max_grad_norm = 5
   num_layers = 2
   num_steps = 35
@@ -233,7 +234,7 @@ class MediumConfig(object):
   keep_prob = 0.5
   lr_decay = 0.8
   batch_size = 20
-  vocab_size = 124262
+  vocab_size = 10000
 
 
 class LargeConfig(object):
@@ -249,7 +250,7 @@ class LargeConfig(object):
   keep_prob = 0.35
   lr_decay = 1 / 1.15
   batch_size = 20
-  vocab_size = 124262
+  vocab_size = 10000
 
 
 class TestConfig(object):
@@ -265,7 +266,7 @@ class TestConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 124262
+  vocab_size = 10000
 
 
 def run_epoch(session, model, eval_op=None, verbose=False):
