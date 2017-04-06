@@ -208,7 +208,7 @@ class PTBModel(object):
 class SmallConfig(object):
   """Small config."""
   init_scale = 0.1
-  learning_rate = 1.0
+  learning_rate = 0.1
   max_grad_norm = 5
   num_layers = 2
   num_steps = 20
@@ -218,7 +218,7 @@ class SmallConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 124262
 
 
 class MediumConfig(object):
@@ -234,7 +234,7 @@ class MediumConfig(object):
   keep_prob = 0.5
   lr_decay = 0.8
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 124262
 
 
 class LargeConfig(object):
@@ -266,7 +266,7 @@ class TestConfig(object):
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 124262
 
 
 def run_epoch(session, model, eval_op=None, verbose=False):
