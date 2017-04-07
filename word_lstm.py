@@ -60,7 +60,7 @@ flags = tf.flags
 logging = tf.logging
 
 flags.DEFINE_string(
-    "model", "medium",
+    "model", "large",
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", "./",
                     "Where the training/test data is stored.")
@@ -208,7 +208,7 @@ class PTBModel(object):
 class SmallConfig(object):
   """Small config."""
   init_scale = 0.1
-  learning_rate = 0.1
+  learning_rate = 1.0
   max_grad_norm = 5
   num_layers = 2
   num_steps = 20
@@ -224,7 +224,7 @@ class SmallConfig(object):
 class MediumConfig(object):
   """Medium config."""
   init_scale = 0.05
-  learning_rate = 0.1
+  learning_rate = 1.0
   max_grad_norm = 5
   num_layers = 2
   num_steps = 35
@@ -240,7 +240,7 @@ class MediumConfig(object):
 class LargeConfig(object):
   """Large config."""
   init_scale = 0.04
-  learning_rate = 1.0
+  learning_rate = 0.1
   max_grad_norm = 10
   num_layers = 2
   num_steps = 35
@@ -250,7 +250,7 @@ class LargeConfig(object):
   keep_prob = 0.35
   lr_decay = 1 / 1.15
   batch_size = 20
-  vocab_size = 10000
+  vocab_size = 124262
 
 
 class TestConfig(object):
