@@ -60,7 +60,7 @@ flags = tf.flags
 logging = tf.logging
 
 flags.DEFINE_string(
-    "model", "small",
+    "model", "large",
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", "./",
                     "Where the training/test data is stored.")
@@ -208,32 +208,46 @@ class PTBModel(object):
 class SmallConfig(object):
   """Small config."""
   init_scale = 0.1
-  learning_rate = 0.1
+  learning_rate = 1.0
   max_grad_norm = 5
   num_layers = 2
   num_steps = 20
   hidden_size = 200
   max_epoch = 4
-  #max_max_epoch = 13
-  max_max_epoch = 120
+  max_max_epoch = 13
   keep_prob = 1.0
   lr_decay = 0.5
   batch_size = 20
   vocab_size = 124262
 
 
+# class MediumConfig(object):
+#   """Medium config."""
+#   init_scale = 0.05
+#   learning_rate = 1.0
+#   max_grad_norm = 5
+#   num_layers = 2
+#   num_steps = 35
+#   hidden_size = 650
+#   max_epoch = 6
+#   max_max_epoch = 39
+#   keep_prob = 0.5
+#   lr_decay = 0.8
+#   batch_size = 20
+#   vocab_size = 124262
+
 class MediumConfig(object):
   """Medium config."""
   init_scale = 0.05
-  learning_rate = 1.0
+  learning_rate = 0.2
   max_grad_norm = 5
   num_layers = 2
   num_steps = 35
   hidden_size = 650
-  max_epoch = 6
-  max_max_epoch = 39
+  max_epoch = 20
+  max_max_epoch = 20
   keep_prob = 0.5
-  lr_decay = 0.8
+  lr_decay = 0.5
   batch_size = 20
   vocab_size = 124262
 
@@ -241,15 +255,13 @@ class MediumConfig(object):
 class LargeConfig(object):
   """Large config."""
   init_scale = 0.04
-  learning_rate = 0.5
+  learning_rate = 1.0
   max_grad_norm = 10
-  num_layers = 3
-  #num_layers = 2
+  num_layers = 2
   num_steps = 35
   hidden_size = 1500
   max_epoch = 14
-  #max_max_epoch = 55
-  max_max_epoch = 100
+  max_max_epoch = 55
   keep_prob = 0.35
   lr_decay = 1 / 1.15
   batch_size = 20
