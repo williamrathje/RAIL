@@ -60,7 +60,7 @@ flags = tf.flags
 logging = tf.logging
 
 flags.DEFINE_string(
-    "model", "large",
+    "model", "medium",
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", "./",
                     "Where the training/test data is stored.")
@@ -241,7 +241,7 @@ class MediumConfig(object):
   init_scale = 0.05
   learning_rate = 0.2
   max_grad_norm = 5
-  num_layers = 2
+  num_layers = 3
   num_steps = 35
   hidden_size = 650
   max_epoch = 20
