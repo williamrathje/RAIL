@@ -241,11 +241,11 @@ class MediumConfig(object):
   init_scale = 0.05
   learning_rate = 0.2
   max_grad_norm = 5
-  num_layers = 3
+  num_layers = 2
   num_steps = 35
   hidden_size = 650
-  max_epoch = 20
-  max_max_epoch = 20
+  max_epoch = 40
+  max_max_epoch = 40
   keep_prob = 0.5
   lr_decay = 0.5
   batch_size = 20
