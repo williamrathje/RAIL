@@ -243,7 +243,8 @@ class MediumConfig(object):
   max_grad_norm = 5
   num_layers = 2
   num_steps = 35
-  hidden_size = 650
+  #hidden_size = 650
+  hidden_size = 450
   max_epoch = 40
   max_max_epoch = 40
   keep_prob = 0.5
