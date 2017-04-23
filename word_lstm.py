@@ -284,7 +284,7 @@ class TestConfig(object):
   batch_size = 20
   vocab_size = 124262
 
-class CustomConfig(object, hidden=350, dropout=0.5):
+class CustomConfig(object, hidden, dropout):
   """Medium config."""
   init_scale = 0.05
   learning_rate = 0.2
