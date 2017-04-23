@@ -60,7 +60,7 @@ flags = tf.flags
 logging = tf.logging
 
 flags.DEFINE_string(
-    "model", "medium",
+    "model", "custom",
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", "./",
                     "Where the training/test data is stored.")
@@ -284,6 +284,22 @@ class TestConfig(object):
   batch_size = 20
   vocab_size = 124262
 
+class CustomConfig(object, hidden=350, dropout=0.5):
+  """Medium config."""
+  init_scale = 0.05
+  learning_rate = 0.2
+  max_grad_norm = 5
+  num_layers = 2
+  num_steps = 35
+  #hidden_size = 650
+  hidden_size = hidden
+  max_epoch = 40
+  max_max_epoch = 40
+  keep_prob = dropout
+  lr_decay = 0.5
+  batch_size = 20
+  vocab_size = 124262
+
 
 def run_epoch(session, model, eval_op=None, verbose=False):
   """Runs the model on the given data."""
@@ -329,9 +345,14 @@ def get_config():
     return LargeConfig()
   elif FLAGS.model == "test":
     return TestConfig()
+  elif FLAGS.model == "custom":
+    return CustomConfig()
   else:
     raise ValueError("Invalid model: %s", FLAGS.model)
 
+def get_set_config(hidden, dropout):
+    if FLAGS.model == "custom":
+      return CustomConfig(hidden, dropout)
 
 def main(_):
   if not FLAGS.data_path:
@@ -340,10 +361,23 @@ def main(_):
   raw_data = reader.ptb_raw_data(FLAGS.data_path)
   train_data, valid_data, test_data, _ = raw_data
 
-  config = get_config()
-  eval_config = get_config()
+
+  hh = [250, 200, 150, 100]
+  dd = [0.5, 0.4, 0.6]
+  config = None
+  eval_config = None
+  for d in dd:
+    for h in hh:
+      print("Hidden neurons: " + str(h))
+      print("Dropout probability: " + str(d))
+      config = get_set_config(h, d)
+      eval_config = get_set_config(h, d)
+
+  #config = get_config()
+  #eval_config = get_config()
   eval_config.batch_size = 1
   eval_config.num_steps = 1
+
 
   with tf.Graph().as_default():
     initializer = tf.random_uniform_initializer(-config.init_scale,
