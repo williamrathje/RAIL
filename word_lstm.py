@@ -293,8 +293,8 @@ class CustomConfig(object):
   num_steps = 35
   #hidden_size = 650
   hidden_size = 350
-  max_epoch = 40
-  max_max_epoch = 40
+  max_epoch = 100
+  max_max_epoch = 100
   keep_prob = 0.5
   lr_decay = 0.5
   batch_size = 20
@@ -362,8 +362,8 @@ def main(_):
   train_data, valid_data, test_data, _ = raw_data
 
 
-  hh = [250, 200, 150, 100]
-  dd = [0.5, 0.25, 0.75]
+  hh = [250, 350]
+  dd = [.25, .35]
   config = None
   eval_config = None
   for d in dd:
