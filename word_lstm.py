@@ -362,8 +362,8 @@ def main(_):
   train_data, valid_data, test_data, _ = raw_data
 
 
-  hh = [250, 350]
-  dd = [.25, .35]
+  hh = [250, 100, 900]
+  dd = [.25]
   config = None
   eval_config = None
   for d in dd:
