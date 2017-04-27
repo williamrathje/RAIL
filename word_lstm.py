@@ -293,8 +293,8 @@ class CustomConfig(object):
   num_steps = 35
   #hidden_size = 650
   hidden_size = 350
-  max_epoch = 100
-  max_max_epoch = 100
+  max_epoch = 35
+  max_max_epoch = 35
   keep_prob = 0.5
   lr_decay = 0.5
   batch_size = 20
