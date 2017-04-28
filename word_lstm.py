@@ -382,8 +382,10 @@ def main(_):
         eval_config = get_set_config()
         config.hidden_size = h
         config.keep_prob = d
+        config.num_layers = l
         eval_config.hidden_size = h
-        evalu.config.keep_prob = d
+        eval_config.keep_prob = d
+        eval_config.num_layers = l
 
         eval_config.batch_size = 1
         eval_config.num_steps = 1
