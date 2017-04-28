@@ -362,25 +362,31 @@ def main(_):
   train_data, valid_data, test_data, _ = raw_data
 
 
-  hh = [250, 100, 900]
+  #hh = [250]
+  #dd = [.25]
+  hh = [900, 1800]
+  ll = [2, 3]
   dd = [.25]
   config = None
   eval_config = None
   for d in dd:
     for h in hh:
-      print("Hidden neurons: " + str(h))
-      print("Dropout probability: " + str(d))
-      config = get_set_config()
-      eval_config = get_set_config()
-      config.hidden_size = h
-      config.keep_prob = d
-      eval_config.hidden_size = h
-      evalu.config.keep_prob = d
+      for l in ll:
+        if h == hh[0] and l == ll[0]: 
+          continue   # skip already tried
+        if h == hh[1] and l == ll[1]:
+          continue
+        print("Hidden neurons: " + str(h))
+        print("Dropout probability: " + str(d))
+        config = get_set_config()
+        eval_config = get_set_config()
+        config.hidden_size = h
+        config.keep_prob = d
+        eval_config.hidden_size = h
+        evalu.config.keep_prob = d
 
-      #config = get_config()
-      #eval_config = get_config()
-      eval_config.batch_size = 1
-      eval_config.num_steps = 1
+        eval_config.batch_size = 1
+        eval_config.num_steps = 1
 
 
       with tf.Graph().as_default():
