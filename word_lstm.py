@@ -437,7 +437,6 @@ def main(_):
           if FLAGS.save_path:
             print("Saving model to %s." % FLAGS.save_path)
             sv.saver.save(session, FLAGS.save_path, global_step=sv.global_step)
-  time.sleep(600)
   subprocess.call('echo "lstm output" | mail -s "LSTM Output" -a /homes/border/greyostrich/lstm_out.txt rborder@robots.ox.ac.uk,william.rathje@new.ox.ac.uk', shell=True)
 
 if __name__ == "__main__":
