@@ -50,11 +50,12 @@ from __future__ import print_function
 
 import inspect
 import time
+import subprocess
 
 import numpy as np
 import tensorflow as tf
 
-import reader
+import word_lstm_reader as reader
 
 flags = tf.flags
 logging = tf.logging
@@ -64,7 +65,7 @@ flags.DEFINE_string(
     "A type of model. Possible options are: small, medium, large.")
 flags.DEFINE_string("data_path", "./",
                     "Where the training/test data is stored.")
-flags.DEFINE_string("save_path", "./",
+flags.DEFINE_string("save_path", "/homes/border/greyostrich/temp/",
                     "Model output directory.")
 flags.DEFINE_bool("use_fp16", False,
                   "Train using 16-bit floats instead of 32bit floats")
@@ -376,10 +377,13 @@ def main(_):
           continue   # skip already tried
         if h == hh[1] and l == ll[1]:
           continue
+        subprocess.call("\cp -rf /homes/border/greyostrich/temp/ /homes/border/greyostrich/models", shell=True)
+        subprocess.call("rm -rf /homes/border/greyostrich/temp/", shell=True)
+        subprocess.call("mkdir /homes/border/greyostrich/temp", shell=True)
         print("Hidden neurons: " + str(h))
         print("Dropout probability: " + str(d))
-        config = get_set_config()
-        eval_config = get_set_config()
+        config = get_config()
+        eval_config = get_config()
         config.hidden_size = h
         config.keep_prob = d
         config.num_layers = l
@@ -433,7 +437,8 @@ def main(_):
           if FLAGS.save_path:
             print("Saving model to %s." % FLAGS.save_path)
             sv.saver.save(session, FLAGS.save_path, global_step=sv.global_step)
-
+  time.sleep(600)
+  subprocess.call('echo "lstm output" | mail -s "LSTM Output" -a /homes/border/greyostrich/lstm_out.txt rborder@robots.ox.ac.uk,william.rathje@new.ox.ac.uk', shell=True)
 
 if __name__ == "__main__":
   tf.app.run()
