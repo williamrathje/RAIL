@@ -373,10 +373,6 @@ def main(_):
   for d in dd:
     for h in hh:
       for l in ll:
-        if h == hh[0] and l == ll[0]: 
-          continue   # skip already tried
-        if h == hh[1] and l == ll[1]:
-          continue
         subprocess.call("\cp -rf /homes/border/greyostrich/temp/ /homes/border/greyostrich/models", shell=True)
         subprocess.call("rm -rf /homes/border/greyostrich/temp/", shell=True)
         subprocess.call("mkdir /homes/border/greyostrich/temp", shell=True)
