@@ -365,7 +365,7 @@ def main(_):
 
   #hh = [250]
   #dd = [.25]
-  hh = [3600]
+  hh = [2400]
   ll = [2]
   dd = [.25]
   config = None
