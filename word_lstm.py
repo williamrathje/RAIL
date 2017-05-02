@@ -288,13 +288,13 @@ class TestConfig(object):
 class CustomConfig(object):
   """Medium config."""
   init_scale = 0.05
-  learning_rate = 0.5
+  learning_rate = 0.2
   max_grad_norm = 5
   num_layers = 2
   num_steps = 35
   #hidden_size = 650
   hidden_size = 350
-  max_epoch = 7
+  max_epoch = 25
   max_max_epoch = 25
   keep_prob = 0.5
   lr_decay = 0.5
@@ -365,7 +365,7 @@ def main(_):
 
   #hh = [250]
   #dd = [.25]
-  hh = [900]
+  hh = [250]
   ll = [2]
   dd = [.25]
   config = None
