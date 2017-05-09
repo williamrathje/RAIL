@@ -300,7 +300,7 @@ class CustomConfig(object):
   lr_decay = 0.5
   batch_size = 20
   #vocab_size = 124262
-  vocab_size = 172658
+  vocab_size = 174053
 
 
 def run_epoch(session, model, eval_op=None, verbose=False):
