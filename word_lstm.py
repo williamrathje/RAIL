@@ -366,9 +366,9 @@ def main(_):
 
   #hh = [250]
   #dd = [.25]
-  hh = [500]
-  ll = [2]
-  dd = [.5]
+  hh = [400]
+  ll = [1, 2]
+  dd = [.1, .5]
   config = None
   eval_config = None
   for d in dd:
