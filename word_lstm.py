@@ -367,8 +367,8 @@ def main(_):
   #hh = [250]
   #dd = [.25]
   hh = [300]
-  ll = [1, 2, 3]
-  dd = [.1, .5]
+  ll = [1, 10, 50]
+  dd = [.5]
   config = None
   eval_config = None
   for d in dd:
@@ -379,16 +379,14 @@ def main(_):
         subprocess.call("mkdir /homes/border/greyostrich/temp", shell=True)
         print("Hidden neurons: " + str(h))
         print("Dropout probability: " + str(d))
-        print("Layers: " + str(d))
+        print("Layers: " + str(l))
         config = get_config()
         eval_config = get_config()
         config.hidden_size = h
         config.keep_prob = d
-        config.num_layers = l
+        config.batch_size = l
         eval_config.hidden_size = h
         eval_config.keep_prob = d
-        eval_config.num_layers = l
-
         eval_config.batch_size = 1
         eval_config.num_steps = 1
 
