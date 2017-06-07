@@ -367,7 +367,7 @@ def main(_):
   #hh = [250]
   #dd = [.25]
   hh = [300]
-  ll = [5, 10, 50]
+  ll = [10, 50]
   dd = [.5]
   config = None
   eval_config = None
