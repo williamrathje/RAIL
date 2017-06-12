@@ -9,7 +9,7 @@ import numpy as np
 import random
 import sys
 
-path = 'training.txt'
+path = 'trainfilter.txt'
 f = open(path).read().lower()
 
 train = f
