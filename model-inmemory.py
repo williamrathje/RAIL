@@ -48,9 +48,9 @@ def prepare(text):
 # build the model: a single LSTM
 print('Build model...')
 model = Sequential()
-model.add(LSTM(128, return_sequences=True, input_shape=(maxlen, len(chars))))
+model.add(LSTM(256, return_sequences=True, input_shape=(maxlen, len(chars))))
 model.add(Dropout(0.2))
-model.add(LSTM(128))
+model.add(LSTM(256))
 model.add(Dropout(0.2))
 model.add(Dense(len(chars)))
 model.add(Activation('softmax'))
@@ -69,7 +69,7 @@ def sample(preds, temperature=1.0):
     return np.argmax(probas)
 
 # train the model, output generated text after each iteration
-for iteration in range(1, 1000):
+for iteration in range(1, 500):
     print()
     print('-' * 50)
     print('Iteration', iteration)
@@ -111,5 +111,6 @@ for iteration in range(1, 1000):
             sys.stdout.flush()
         print()
     i += 1
-    #if iteration == 30 and (i+1)*stp >= (len(train)/stp): 
+    #if iteration == 30 and (i+1)*
+    >= (len(train)/stp): 
     model.save('model.h5')
