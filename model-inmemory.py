@@ -112,5 +112,5 @@ for iteration in range(1, 500):
         print()
     i += 1
     #if iteration == 30 and (i+1)*
-    >= (len(train)/stp): 
-    model.save('model.h5')
+    #>= (len(train)/stp): 
+    #model.save('model.h5')
