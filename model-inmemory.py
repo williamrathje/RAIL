@@ -49,9 +49,9 @@ def prepare(text):
 print('Build model...')
 model = Sequential()
 model.add(LSTM(128, return_sequences=True, input_shape=(maxlen, len(chars))))
-model.add(Dropout(0.5))
+model.add(Dropout(0.2))
 model.add(LSTM(128))
-model.add(Dropout(0.5))
+model.add(Dropout(0.2))
 model.add(Dense(len(chars)))
 model.add(Activation('softmax'))
 
