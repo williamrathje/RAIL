@@ -49,9 +49,9 @@ def prepare(text):
 print('Build model...')
 model = Sequential()
 model.add(LSTM(256, return_sequences=True, input_shape=(maxlen, len(chars))))
-model.add(Dropout(0.2))
+model.add(Dropout(0.75))
 model.add(LSTM(256))
-model.add(Dropout(0.2))
+model.add(Dropout(0.75))
 model.add(Dense(len(chars)))
 model.add(Activation('softmax'))
 
@@ -69,7 +69,7 @@ def sample(preds, temperature=1.0):
     return np.argmax(probas)
 
 # train the model, output generated text after each iteration
-for iteration in range(1, 500):
+for iteration in range(1, 100):
     print()
     print('-' * 50)
     print('Iteration', iteration)
