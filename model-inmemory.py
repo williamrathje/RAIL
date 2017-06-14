@@ -55,7 +55,7 @@ model.add(Dropout(0.75))
 model.add(Dense(len(chars)))
 model.add(Activation('softmax'))
 
-optimizer = RMSprop(lr=0.01)
+optimizer = RMSprop(lr=0.001)
 model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
 
@@ -69,7 +69,7 @@ def sample(preds, temperature=1.0):
     return np.argmax(probas)
 
 # train the model, output generated text after each iteration
-for iteration in range(1, 100):
+for iteration in range(1, 200):
     print()
     print('-' * 50)
     print('Iteration', iteration)
