@@ -49,7 +49,7 @@ def prepare(text):
 print('Build model...')
 model = Sequential()
 #model.add(LSTM(700, return_sequences=True, input_shape=(maxlen, len(chars))))
-model.add(LSTM(700, return_sequences=False, input_shape=(maxlen, len(chars))))
+model.add(LSTM(800, return_sequences=False, input_shape=(maxlen, len(chars))))
 model.add(Dropout(0.65))
 #model.add(LSTM(700))
 #model.add(Dropout(0.65))
