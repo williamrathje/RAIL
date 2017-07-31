@@ -50,7 +50,7 @@ print('Build model...')
 model = Sequential()
 #model.add(LSTM(700, return_sequences=True, input_shape=(maxlen, len(chars))))
 model.add(LSTM(800, return_sequences=False, input_shape=(maxlen, len(chars))))
-model.add(Dropout(0.85))
+#model.add(Dropout(1.00))
 #model.add(LSTM(700))
 #model.add(Dropout(0.65))
 model.add(Dense(len(chars)))
@@ -110,6 +110,7 @@ for iteration in range(1, 700):
             sys.stdout.write(next_char)
             sys.stdout.flush()
         print()
+        print("Next...")
     i += 1
     #if iteration == 30 and (i+1)*
     #>= (len(train)/stp): 
