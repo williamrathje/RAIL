@@ -93,22 +93,22 @@ for iteration in range(1, 700):
         sentence = train[start_index: start_index + maxlen]
         generated += sentence
         print('----- Generating with seed: "' + sentence + '"')
-        sys.stdout.write(generated)
+        #sys.stdout.write(generated)
 
         for ii in range(400):
             x = np.zeros((1, maxlen, len(chars)))
             for t, char in enumerate(sentence):
                 x[0, t, char_indices[char]] = 1.
 
-            preds = model.predict(x, verbose=0)[0]
+            preds = model.predict(x, verbose=1)[0]
             next_index = sample(preds, diversity)
             next_char = indices_char[next_index]
 
             generated += next_char
             sentence = sentence[1:] + next_char
 
-            sys.stdout.write(next_char)
-            sys.stdout.flush()
+            #sys.stdout.write(next_char)
+            #sys.stdout.flush()
         print("Qualitative output for " + str(diversity))
         print(generated)
         print()
