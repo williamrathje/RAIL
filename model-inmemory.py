@@ -49,14 +49,14 @@ def prepare(text):
 print('Build model...')
 model = Sequential()
 #model.add(LSTM(700, return_sequences=True, input_shape=(maxlen, len(chars))))
-model.add(LSTM(700, return_sequences=False, input_shape=(maxlen, len(chars))))
-model.add(Dropout(0.85))
+model.add(LSTM(600, return_sequences=False, input_shape=(maxlen, len(chars))))
+model.add(Dropout(0.65))
 #model.add(LSTM(700))
 #model.add(Dropout(0.65))
 model.add(Dense(len(chars)))
 model.add(Activation('softmax'))
 
-optimizer = RMSprop(lr=0.0025)
+optimizer = RMSprop(lr=0.00125)
 model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
 
@@ -70,7 +70,7 @@ def sample(preds, temperature=1.0):
     return np.argmax(probas)
 
 # train the model, output generated text after each iteration
-for iteration in range(1, 700):
+for iteration in range(1, 5):
     print()
     print('-' * 50)
     print('Iteration', iteration)
@@ -100,7 +100,7 @@ for iteration in range(1, 700):
             for t, char in enumerate(sentence):
                 x[0, t, char_indices[char]] = 1.
 
-            preds = model.predict(x, verbose=1)[0]
+            preds = model.predict(x, verbose=0)[0]
             next_index = sample(preds, diversity)
             next_char = indices_char[next_index]
 
